@@ -1,0 +1,16 @@
+{% extends 'base_content.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Create Task</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% include 'partials/bootstrap_form.html' with form=form %}
+        <a href="{% url 'team_detail' pk %}" class="btn btn-secondary">Cancel</a>
+        <input type="submit" value="Create Task" class="btn btn-primary">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

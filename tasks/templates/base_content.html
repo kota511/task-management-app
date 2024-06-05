@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% include 'partials/navbar.html' %}
+  {% include 'partials/messages.html' %}
+  {% if request.path == '/dashboard/' %}
+    {% include 'partials/team_sidebar.html' %}
+  {% endif %}
+  {% block content %}
+  {% endblock %}
+{% endblock %}

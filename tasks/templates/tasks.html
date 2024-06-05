@@ -1,0 +1,77 @@
+<!--Filter Search Bar-->
+<div class="container" style="padding:20px;">
+   <form method="GET">
+      {{ myFilter.as_p }}
+      <style>
+         input[type="text"]{
+            width: 70%;
+         }
+         input[type="datetime-local"]{
+            width: 180px;
+         }
+      </style>
+      {% if request.path == '/dashboard/' %}
+         <a href="{%url 'dashboard' %}">
+            <button class="btn btn-secondary btn-sm" type="submit" action="{% url 'dashboard' %}"><i class="bi bi-search"></i></button>
+         </a>
+      {% elif 'teams' in request.path %}
+         <a href="{%url 'team_detail' team.id %}">
+            <button class="btn btn-secondary btn-sm" type="submit" action="{%url 'team_detail' team.id %}"><i class="bi bi-search"></i></button>
+         </a>
+      {% endif %}
+      {% if request.path == '/dashboard/' %}
+         <a href="{%url 'dashboard' %}">
+            <button class="btn btn-secondary btn-sm" type="button"><i class="bi bi-x-lg"></i></button>
+         </a>
+      {% elif 'teams' in request.path %}
+         <a href="{%url 'team_detail' team.id %}">
+            <button class="btn btn-secondary btn-sm" type="button"><i class="bi bi-x-lg"></i></button>
+         </a>
+      {% endif %}
+   </form>
+
+
+   <!--Display Filtered Task Cards-->
+   <div class="container" style="padding:5px; display: flex; flex-wrap: wrap; gap:20px;">
+      <!--Actual Task Cards-->
+      {% for task in tasks %}
+         <div class="card" style="width: 325px;">
+            <!--Status check to be tested-->
+            {% if request.path == '/dashboard/' %}
+               {% if task.status == 'Not Started' %}
+                  <div class="card-header" style="height:30px; background-color:rgb(145, 145, 145);"><small style="position: relative; top:-75%;">{{task.team}}</small></div>
+               {% elif task.status == 'In Progress' %}
+                  <div class="card-header" style="height:30px; background-color:rgb(255, 255, 170);"><small style="position: relative; top:-75%;">{{task.team}}</small></div>
+               {% elif task.status == 'Complete' %}
+                  <div class="card-header" style="height:30px; background-color:rgb(178, 255, 178);"><small style="position: relative; top:-75%;">{{task.team}}</small></div>
+               {% endif %}
+            {% else %}
+               {% if task.status == 'Not Started' %}
+                  <div class="card-header" style="height:30px; background-color:rgb(145, 145, 145);"></div>
+               {% elif task.status == 'In Progress' %}
+                  <div class="card-header" style="height:30px; background-color:rgb(255, 255, 170);"></div>
+               {% elif task.status == 'Complete' %}
+                  <div class="card-header" style="height:30px; background-color:rgb(178, 255, 178);"></div>
+               {% endif %}
+            {% endif %}
+            <div class="card-body">
+               <h5 class="card-title">{{task.title}}</h5>
+               <p class="card-text">{{task.description}}</p>
+               <div class="bottom-element">
+                  <small>
+                     {% if request.path == '/dashboard/' %}
+                        Team: {{task.team}}<br>
+                     {% else %}
+                        Assigned To: {{task.assigned_to}}<br>
+                     {% endif %}
+                     Due Date: {{task.due_date}}
+                  </small>
+                  <a href="{% url 'edit_task' task.id %}" class="btn btn-secondary btn-sm float-end">Edit</a>         
+               </div>         
+            </div>
+         </div>
+      {% empty %}
+         <h5>No tasks match your filter conditions.</h5>
+      {% endfor %}
+   </div>
+</div>

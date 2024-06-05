@@ -1,0 +1,77 @@
+{% extends 'base_content.html' %}
+{% block content %}
+<style>
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: rgb(91, 91, 205);
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .requirement {
+    font-size: 0.95rem;
+    color: #ff0000;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    /* Prevents the text from wrapping */
+  }
+
+  form #id_name:focus {
+    border: 0.2rem #ff8585 solid;
+  }
+
+  .topbuttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+</style>
+
+{% if request.user == team.owner %}
+<div class="container">
+  <div class="topbuttons">
+    <a href="/dashboard" class="btn btn-primary">Home</a>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="action" value="delete_team" class="btn btn-danger" ,
+        onclick="return confirm('Are you sure you want to delete this team?');">Delete Team</button>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h1>Edit Team</h1>
+      <form method="post">
+        {% csrf_token %}
+        {% include 'partials/bootstrap_form.html' with form=form %}
+        <div class="mb-3">
+          <div class="flex-container">
+            <input type="submit" value="Save" class="btn btn-primary">
+            <a href="{% url 'team_detail' pk=team.id %}" class="btn btn-secondary">Cancel</a>
+            <a href="#" onclick="document.getElementById('id_name').focus(); return false;" class="requirement">*
+              Indicates required fields</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% if request.user != team.owner %}
+<div class="text-center">
+  <h1><strong>Nice try but you do not have the authority ;)</strong></h1>
+</div>
+{% endif %}
+{% endblock %}

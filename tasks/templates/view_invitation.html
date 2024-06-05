@@ -1,0 +1,55 @@
+{% extends 'base_content.html' %}
+{% load bootstrap_pagination %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 class="mb-4">Invitations</h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% bootstrap_paginate page_obj %}
+                <div class="card">
+                    <div class="card-body">
+                        {% if invitations %}
+                            <ul class="list-group">
+                                {% for invitation in invitations %}
+                                    <li class="list-group-item {% if forloop.counter > 1 %}border-top{% endif %} my-2">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                Sender: {{ invitation.sender.username }}<br>
+                                                Team: {{ invitation.team.name }}<br>
+                                                Message: {{ invitation.message }}
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="badge bg-secondary mb-2">Pending</span><br>
+                                                <div class="btn-container">
+                                                    <form method="post" style="display: inline;">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="accept_invitation" value="{{ invitation.id }}">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Accept
+                                                        </button>
+                                                    </form>
+                                                    <form method="post" style="display: inline;">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="decline_invitation" value="{{ invitation.id }}">
+                                                        <button type="submit" class="btn btn-danger">
+                                                            Decline
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Your invitation inbox is as quiet as a library at midnight.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

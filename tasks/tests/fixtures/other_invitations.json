@@ -1,0 +1,25 @@
+[
+    {
+      "model": "tasks.invitation",
+      "pk": 2,
+      "fields": {
+        "sender": 1,
+        "recipient": 3,
+        "team": 1,
+        "message": "Invitation message 2",
+        "created_at": "2023-11-25T10:00:00Z"
+      }
+    },
+    {
+        "model": "tasks.invitation",
+        "pk": 3,
+        "fields": {
+          "sender": 3,
+          "recipient": 2,
+          "team": 3,
+          "message": "Invitation message 3",
+          "created_at": "2023-11-25T10:00:00Z"
+        }
+      }
+  ]
+  

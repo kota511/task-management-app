@@ -1,0 +1,39 @@
+{% if request.path != '/log_in/' and request.path != '/sign_up/' %}
+    <head>
+        <!-- Other meta tags, title, and links -->
+        <style>
+            .notification-icon {
+                position: relative;
+                right: 0.5em; /* Adjust the distance from the right */
+            }
+
+            .invitation-count {
+                position: absolute;
+                top: -0.4em; /* Adjust as needed to move it above */
+                right: -0.3em; /* Adjust as needed to align it */
+                font-size: small; /* Adjust the font size */
+                background-color: #dc3545;
+                color: white;
+                padding: 0.15em 0.35em; /* Adjust padding */
+                border-radius: 0.25rem;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Your HTML content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link notification-icon" href="{% url 'view_invitation' %}">
+                        <span class="bi bi-inbox"></span>
+                        <!-- Show count if invitations are present -->
+                        {% if user.received_invitations.count > 0 %}
+                            <span class="invitation-count">{{ user.received_invitations.count }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Other scripts and closing tags -->
+    </body>
+{% endif %}

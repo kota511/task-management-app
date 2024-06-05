@@ -1,0 +1,13 @@
+{% extends 'base_content.html' %}
+{% block content %}
+<style>
+  .container {
+    padding-left: 2rem;
+  }
+</style>
+
+<div class="container">
+  <h1>Welcome to your dashboard {{ user.username }}</h1>
+  {% include 'tasks.html' %}
+</div>
+{% endblock %}

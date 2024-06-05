@@ -1,0 +1,47 @@
+[
+  {
+    "model": "tasks.task",
+    "pk": 2,
+    "fields": {
+      "title": "Second Test Task",
+      "description": "This is the description for the second test task",
+      "due_date": "2024-10-10T00:00:00+00:00",
+      "assigned_to": 2,
+      "team": 1,
+      "status": "Not Started",
+      "priority": 3,
+      "created_at": "2023-10-23T00:00:00+00:00",
+      "updated_at": "2023-10-23T00:00:00+00:00"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 3,
+    "fields": {
+      "title": "Third Test Task",
+      "description": "This is the description for the third test task",
+      "due_date": "2024-10-12T00:00:00+00:00",
+      "assigned_to": 2,
+      "team": 2,
+      "status": "In Progress",
+      "priority": 4,
+      "created_at": "2023-10-25T00:00:00+00:00",
+      "updated_at": "2023-10-25T00:00:00+00:00"
+    }
+  },
+  {
+    "model": "tasks.task",
+    "pk": 4,
+    "fields": {
+      "title": "Fourth Test Task",
+      "description": "This is the description for the fourth test task",
+      "due_date": "2024-10-11T00:00:00+00:00",
+      "assigned_to": 3,
+      "team": 3,
+      "status": "Complete",
+      "priority": 5,
+      "created_at": "2023-10-26T00:00:00+00:00",
+      "updated_at": "2023-10-26T00:00:00+00:00"
+    }
+  }
+]

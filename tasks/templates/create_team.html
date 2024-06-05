@@ -1,0 +1,46 @@
+{% extends 'base_content.html' %}
+{% block content %}
+<style>
+    .form-container {
+        padding-top: 20px;
+    }
+
+    .flex-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .requirement {
+        font-size: 0.95rem;
+        color: #ff0000;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+        /* Prevents the text from wrapping */
+    }
+
+    /* Style the name field to highlight when focused */
+    form #id_name:focus {
+        border: 2px #ff8585 solid;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Create Team</h1>
+            <form action="{% url 'create_team' %}" method="post" class="form-container">
+                {% csrf_token %}
+                {% include 'partials/bootstrap_form.html' with form=form %}
+                <div class="flex-container">
+                    <input type="submit" value="Create Team" class="btn btn-primary">
+                    <a href="#" onclick="document.getElementById('id_name').focus(); return false;"
+                        class="requirement">* Indicates required fields</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
