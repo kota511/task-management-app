@@ -2,18 +2,17 @@
 
 ## Team members
 The members of the team are:
-- Zehra Hasan
+- Imran Mehdiyev
 - Jolene Yan Wen Lim
 - Kota Amemiya
-- Imran Mehdiyev
 - Maneet Sigtia
+- Zehra Hasan
 
 ## Project structure
 The project is called `task_manager`.  It currently consists of a single app `tasks`.
 
 ## Deployed version of the application
-The deployed version of the application can be found at [ZehraHasan.pythonanywhere.com](ZehraHasan.pythonanywhere.com).
-The admin interface link can be found at [https://zehrahasan.pythonanywhere.com/admin/](https://zehrahasan.pythonanywhere.com/admin/)
+The deployed version of the application has been redacted.
 
 ## Installation instructions
 To install the software and use it in your local development environment, you must first set up and activate a local development environment.  From the root of the project:
@@ -51,4 +50,6 @@ $ python3 manage.py test
 ## Sources
 The packages used by this application are specified in `requirements.txt`
 
-*Declare are other sources here, and remove this line*
+## Disclaimers
+This repository was cloned from a private repository owned by another team member.
+A working deployed version is available upon request.
